@@ -1,3 +1,5 @@
+Batch processing with read and write locks.
+
 ```go
 package pipeline
 
