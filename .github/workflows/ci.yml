@@ -53,15 +53,3 @@ jobs:
           uses: codecov/codecov-action@v1
           with:
             file: ./cover.out
-
-        - name: Reproducible build test
-          run: |
-            go build -o batch            
-            shasum -a256 ./batch > batch.sha256
-            go build -o batch1
-            shasum -a256 ./batch1 > batch1.sha256
-            if cmp --silent -- batch.sha256 batch1.sha256; then
-              echo "files contents are identical"
-            else
-              echo >&2 "Reproducible build broken"; cat batch.sha256; cat batch1.sha256; exit 1
-            fi
