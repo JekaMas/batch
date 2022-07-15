@@ -13,3 +13,32 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+.DS_Store
+*/**/.DS_Store
+*/**/*dapps*
+build/
+
+#*
+.#*
+*#
+*~
+.project
+.settings
+
+# used by the Makefile
+/build/_workspace/
+/build/cache/
+/build/bin/
+
+# travis
+profile.tmp
+profile.cov
+
+# IdeaIDE
+.idea
+
+# VS Code
+.vscode
+
+dist

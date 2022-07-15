@@ -1,21 +1,23 @@
 package batch
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 type test struct {
 	n int
 	b bool
 }
 
-func TestingBatch(t *testing.T) {
-	b := &Batch[*test]{
-    Values: []*test{
-      &test{50, false},
-      &test{3, true},
-    },}
+func TestBatch(t *testing.T) {
+	b := NewBatch([]*test{
+		{50, false},
+		{3, true},
+	}...)
 
-  var sum int
-  
+	var sum int
+
 	b.Apply(
 		b.NewWrite(func(vs ...*test) {
 			p := vs[0]
@@ -26,11 +28,11 @@ func TestingBatch(t *testing.T) {
 			}
 		}),
 		b.NewRead(func(vs ...*test) {
-      sum = *vs[0].n + *vs[1].n
+			sum = vs[0].n + vs[1].n
 		}),
 	)
 
-  if sum != 53 && sum != 6 {
-    t.Fatal(t, fmt.Sprintf("wasn't serialized: got %d, expected 53 or 6", sum))
-  }
+	if sum != 53 && sum != 6 {
+		t.Fatal(t, fmt.Sprintf("wasn't serialized: got %d, expected 53 or 6", sum))
+	}
 }
