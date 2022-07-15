@@ -28,12 +28,7 @@ jobs:
           with:
             go-version: 1.18.x
 
-        - name: Install dependencies on Linux
-          if: runner.os == 'Linux'
-          run: sudo apt update && sudo apt install build-essential
-
         - name: Golang-ci install
-          if: runner.os == 'Linux'
           run: make lintci-deps
 
         - uses: actions/cache@v3
