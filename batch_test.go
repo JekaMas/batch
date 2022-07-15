@@ -11,6 +11,8 @@ type test struct {
 }
 
 func TestBatch(t *testing.T) {
+	t.Parallel()
+
 	b := NewBatch([]*test{
 		{50, false},
 		{3, true},

@@ -1,8 +1,4 @@
-# This Makefile is meant to be used by people that do not usually work
-# with Go source code. If you know what GOPATH is then you probably
-# don't need to bother with make.
-
-.PHONY: geth android ios geth-cross evm all test clean docs
+.PHONY: test test-race lint lintci-deps goimports clean
 
 test:
 	go test --timeout 1m -shuffle=on ./...

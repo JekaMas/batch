@@ -15,10 +15,12 @@ func NewBatch[T any](values ...T) *Batch[T] {
 
 func (b *Batch[T]) Apply(fns ...func(params ...T)) {
 	var wg sync.WaitGroup
+
+	wg.Add(len(fns))
+
 	for _, fn := range fns {
 		fn := fn
 
-		wg.Add(1)
 		go func() {
 			defer wg.Done()
 
